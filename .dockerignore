@@ -124,3 +124,6 @@ Gemfile.lock
 
 # SonarQube
 .scannerwork/
+
+# Napptive Playground CLI Personal Access Token
+ci_pat.dat

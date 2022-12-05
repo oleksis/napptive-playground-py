@@ -1,0 +1,21 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: fastapi-webapp
+  annotations: # include optional annotations and/or labels.
+    version: v1.0.0
+    description: "Web API using FastAPI framework"
+spec:
+  components:
+    - name: fastapi-comp
+      type: webservice
+      properties:
+        image: oleksis/fastapi-napptive-playground-py:latest
+        ports:
+          - port: 8000
+            expose: true
+      traits:
+        - type: napptive-ingress # a napptive-ingress trait to get a public endpoint
+          properties:
+            port: 8000
+            path: /

@@ -2,12 +2,12 @@ name: Docker Image CI
 
 on:
   # Using pattern as described in https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#using-filters
-  pull_request:
-    branches: 
-      - main
-  push:
-    branches: 
-      - main
+  # pull_request:
+  #   branches: 
+  #     - main
+  # push:
+  #   branches: 
+  #     - main
   # Allow mannually trigger
   workflow_dispatch:
 

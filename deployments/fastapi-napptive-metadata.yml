@@ -1,0 +1,17 @@
+apiVersion: core.napptive.com/v1alpha1
+kind: ApplicationMetadata
+name: "Web API using FastAPI framework"
+version: v1.0.0
+description: Web API using FastAPI framework
+keywords:
+  - "server"
+  - "fastapi"
+  - "python"
+  - "github"
+license: "MIT"
+url: "https://github.com/oleksis/napptive-playground-py"
+doc: "https://github.com/oleksis/napptive-playground-py#readme"
+logo:
+  - src: "https://storage.googleapis.com/artifacts.playground.napptive.dev/logos/python_logo.png"
+    type: "image/png"
+    size: "128x128"
