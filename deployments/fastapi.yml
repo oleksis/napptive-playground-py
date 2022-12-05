@@ -1,7 +1,7 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: fastapi-webapp
+  name: fastapi
   annotations: # include optional annotations and/or labels.
     version: v1.0.0
     description: "Web API using FastAPI framework"
