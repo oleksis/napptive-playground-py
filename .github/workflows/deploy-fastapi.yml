@@ -122,13 +122,12 @@ jobs:
         export PATH=$PATH:$(pwd)
 
         echo "Forcing rolling update to download newest image"
-        IMAGE="${TARGET_DOCKER_REGISTRY}/${PLAYGROUND_APP_NAME}:${VERSION}"
+        IMAGE="${TARGET_DOCKER_REGISTRY}/${PLAYGROUND_APP_NAME}-napptive-playground-py:${VERSION_TAG}"
         echo "Update image... ${IMAGE}"
         PATCH="{\"spec\":{\"workload\":{\"spec\":{\"containers\": [{\"name\":\"${PLAYGROUND_APP_NAME}\", \"image\":\"${IMAGE}\"}]}}}}"
         kubectl --kubeconfig napptive-kubeconfig patch component ${PLAYGROUND_APP_NAME}-comp -p "${PATCH}" --type=merge
       env:
-        VERSION: ${{ needs.check-app.outputs.version }}
-        PLAYGROUND_APP_NAME: ${{ env.PLAYGROUND_APP_NAME }}
+        VERSION_TAG: latest
 
   deploy-app:
     name: Deploy application from catalog
@@ -147,6 +146,8 @@ jobs:
         VERSION: ${{ needs.check-app.outputs.version }}
         PLAYGROUND_APP_NAME: ${{ env.PLAYGROUND_APP_NAME }}
     - name: Deploy the app from the catalog
-      uses: napptive-actions/catalog-deploy-action@v2.2.4
+      uses: napptive-actions/catalog-deploy-action@v4.3.0
+      env:
+          PLAYGROUND_PAT: ${{ secrets.PLAYGROUND_PAT }}
       with:        
         appName: ${{ steps.appname.outputs.appname }}
