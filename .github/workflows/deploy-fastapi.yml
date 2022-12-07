@@ -52,7 +52,7 @@ jobs:
     name: Check if the app are deployed
     runs-on: ubuntu-latest
     outputs:
-      not-found: ${{ steps.not-found.outputs.not-found }}
+      not-found: ${{ steps.not-found.outputs.found }}
       found: ${{ steps.found.outputs.found }}
       version: ${{ needs.build.outputs.version }}
     steps:
@@ -66,7 +66,7 @@ jobs:
           cmd: "apps info fastapi"
       - name: Set App not found
         id: not-found
-        run: echo 'not-found=true' >> $GITHUB_OUTPUT
+        run: echo 'found=false' >> $GITHUB_OUTPUT
         if: steps.check.outcome != 'success'
       - name: Set App found
         id: found
@@ -136,7 +136,7 @@ jobs:
       - check-app
       - push-to-catalog
     runs-on: ubuntu-latest
-    if: ${{ needs.check-app.outputs.not-found == 'true' }}
+    if: ${{ needs.check-app.outputs.not-found == 'false' }}
     steps: 
     - name: Check out code
       uses: actions/checkout@v3
