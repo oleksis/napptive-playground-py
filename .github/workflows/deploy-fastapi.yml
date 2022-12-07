@@ -59,7 +59,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
       - name: Check if the app exists        
-        uses: napptive-actions/playground-github-action@v2.2.4
+        uses: napptive-actions/playground-github-action@v4.3.0
         continue-on-error: true
         id: check
         with:
@@ -71,7 +71,7 @@ jobs:
       - name: Set App found
         id: found
         run: echo 'found=true' >> $GITHUB_OUTPUT
-        if: steps.check.outcome != 'failure'
+        if: steps.check.outcome == 'success'
 
   push-to-catalog:
     needs: build
@@ -100,7 +100,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
     - name: Get Kubeconfig      
-      uses: napptive-actions/playground-github-action@v2.2.4
+      uses: napptive-actions/playground-github-action@v4.3.0
       with:
         cmd: "get-kubeconfig" 
     - name: Deploy new version of the application
