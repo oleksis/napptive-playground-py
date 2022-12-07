@@ -128,5 +128,12 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# VS
+.vscode
+.vs
+*.sln
+.ionide
+.fake
+
 # Napptive Playground CLI Personal Access Token
 ci_pat.dat
