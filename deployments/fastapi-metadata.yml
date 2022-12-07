@@ -1,7 +1,7 @@
 apiVersion: core.napptive.com/v1alpha1
 kind: ApplicationMetadata
 name: "FastAPI"
-version: v1.0.0
+version: v1.0.1
 description: Web API using FastAPI framework
 keywords:
   - "server"
