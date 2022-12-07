@@ -45,7 +45,7 @@ jobs:
           context: .
           file: ./.devcontainer/Dockerfile.prod
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-napptive-playground-py:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.TARGET_DOCKER_IMAGE }}
       
   check-app:
     needs: build
@@ -125,7 +125,7 @@ jobs:
         export PATH=$PATH:$(pwd)
 
         echo "Forcing rolling update to download newest image"
-        IMAGE="${TARGET_DOCKER_REGISTRY}/{{ env.TARGET_DOCKER_IMAGE }}"
+        IMAGE="${TARGET_DOCKER_REGISTRY}/{{ TARGET_DOCKER_IMAGE }}"
         echo "Update image... ${IMAGE}"
         PATCH="{\"spec\":{\"workload\":{\"spec\":{\"containers\": [{\"name\":\"${PLAYGROUND_APP_NAME}\", \"image\":\"${IMAGE}\"}]}}}}"
         kubectl --kubeconfig napptive-kubeconfig patch component ${PLAYGROUND_APP_NAME}-comp -p "${PATCH}" --type=merge
