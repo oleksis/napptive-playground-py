@@ -127,8 +127,10 @@ jobs:
         echo "Forcing rolling update to download newest image"
         IMAGE="${TARGET_DOCKER_REGISTRY}/${TARGET_DOCKER_IMAGE}"
         echo "Update image... ${IMAGE}"
-        PATCH="{\"spec\":{\"workload\":{\"spec\":{\"containers\": [{\"name\":\"${PLAYGROUND_APP_NAME}\", \"image\":\"${IMAGE}\"}]}}}}"
-        kubectl --kubeconfig napptive-kubeconfig patch component ${PLAYGROUND_APP_NAME}-comp -p "${PATCH}" --type=merge
+        PATCH="{\"spec\":{\"template\":{\"spec\": {\"containers\": [{\"name\":\"${PLAYGROUND_APP_NAME}-comp\", \"image\":\"${IMAGE}\"}]}}}}"
+        kubectl --kubeconfig napptive-kubeconfig patch deployment ${PLAYGROUND_APP_NAME}-comp -p "${PATCH}" --type=merge
+        #kubectl --kubeconfig napptive-kubeconfig get deployment fastapi-comp --output yaml
+
 
   deploy-app:
     name: Deploy application from catalog
