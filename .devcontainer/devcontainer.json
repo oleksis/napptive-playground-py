@@ -14,6 +14,12 @@
 		}
 	},
 
+	"features": {
+		"ghcr.io/oleksis/playground-cli/playground-cli:4": {
+			"version": "4.3.0"
+		}
+	},
+
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
