@@ -78,8 +78,88 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           registry_user: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
+      
+      # - name: Cat sarif
+      #   run: cat image.sarif.json
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
+        continue-on-error: true
         with:
           sarif_file: image.sarif.json
+      
+      - name: Scan Vulnerabilities
+        run: |
+          cat image.sarif.json | \
+          jq '{ critical: [select(.runs[-1].results[].message.text  | contains(": CRITICAL"))] | length, high: [select(.runs[-1].results[].message.text  | contains(": HIGH"))] | length, medium: [select(.runs[-1].results[].message.text  | contains(": MEDIUM"))] | length, low: [select(.runs[-1].results[].message.text  | contains(": LOW"))] | length }' > \
+          vulnerabilities.json
+      
+      - name: GH Actions Sumary
+        shell: python
+        run: |
+          import json
+          import os
+
+
+          CSS = """
+          <style type="text/css">
+
+          .vulnerabilities {
+              display: flex;
+              flex-flow: row wrap;
+              -webkit-box-pack: end;
+              height: 20px;
+              white-space: normal;
+              overflow: hidden;
+          }
+
+          .severity {
+
+              width: 48px;
+              height: 20px;
+              display: inline-flex;
+              -webkit-box-pack: center;
+              justify-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              white-space: pre;
+              border-radius: 3px;
+              gap: 4px;
+              padding: 4px 0px;
+              font-size: 12px;
+              cursor: default;
+              color: rgb(255, 218, 216);
+              margin: 0px 0px 0px 4px;
+          }
+
+          .critical {
+              background-color: rgb(171, 26, 26);
+          }
+
+          .high {
+              background-color: rgb(206, 80, 25);
+          }
+
+          .medium {
+              background-color: rgb(214, 128, 0);
+          }
+
+          .low {
+              background-color: rgb(136, 135, 158);
+          }
+
+          </style>
+          """
+
+          with open("vulnerabilities.json") as fh:
+              vulnerabilities = json.load(fh)
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as fh:
+              print(f"{CSS}", file=fh)
+              print('<div class="vulnerabilities">', file=fh)
+              for severity, value in vulnerabilities.items():
+                  print(f'<div class="severity {severity}" >', file=fh)
+                  print(f"<strong>{value}</strong> <span>{severity[0].upper()}</span>", file=fh)
+                  print("</div>", file=fh)
+              print("</div>", file=fh)
+
