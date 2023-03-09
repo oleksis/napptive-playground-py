@@ -155,7 +155,9 @@ jobs:
               vulnerabilities = json.load(fh)
 
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as fh:
-              print(f"{CSS}", file=fh)
+              # TODO: Embed the Badges
+              # print(f"{CSS}", file=fh)
+              print("# Vulnerabilities", file=fh)
               print('<div class="vulnerabilities">', file=fh)
               for severity, value in vulnerabilities.items():
                   print(f'<div class="severity {severity}" >', file=fh)
