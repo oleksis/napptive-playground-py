@@ -49,11 +49,11 @@ jobs:
           tags: ${{ env.GITHUB_REGISTRY }}/${{ env.GITHUB_REPOSITORY }}:${{ env.DOCKER_IMAGE_TAG }}
 
   docker-scout:
+    runs-on: ubuntu-latest
     permissions:
-      id-token: read
+      id-token: write
       contents: read
       packages: read
-    runs-on: ubuntu-latest
     needs: [build]
     steps:
       - name: Check out code
