@@ -101,67 +101,64 @@ jobs:
           import os
 
 
-          CSS = """
-          <style type="text/css">
+          css_vulnerabilities = "\
+          display: flex;\
+          flex-flow: row wrap;\
+          -webkit-box-pack: end;\
+          height: 20px;\
+          white-space: normal;\
+          overflow: hidden;"
 
-          .vulnerabilities {
-              display: flex;
-              flex-flow: row wrap;
-              -webkit-box-pack: end;
-              height: 20px;
-              white-space: normal;
-              overflow: hidden;
-          }
+          css_severity = "\
+          width: 48px;\
+          height: 20px;\
+          display: inline-flex;\
+          -webkit-box-pack: center;\
+          justify-content: center;\
+          -webkit-box-align: center;\
+          align-items: center;\
+          white-space: pre;\
+          border-radius: 3px;\
+          gap: 4px;\
+          padding: 4px 0px;\
+          font-size: 12px;\
+          cursor: default;\
+          color: rgb(255, 218, 216);\
+          margin: 0px 0px 0px 4px;"
 
-          .severity {
+          css_critical = "background-color: rgb(171, 26, 26);"
 
-              width: 48px;
-              height: 20px;
-              display: inline-flex;
-              -webkit-box-pack: center;
-              justify-content: center;
-              -webkit-box-align: center;
-              align-items: center;
-              white-space: pre;
-              border-radius: 3px;
-              gap: 4px;
-              padding: 4px 0px;
-              font-size: 12px;
-              cursor: default;
-              color: rgb(255, 218, 216);
-              margin: 0px 0px 0px 4px;
-          }
+          css_high = "background-color: rgb(206, 80, 25);"
 
-          .critical {
-              background-color: rgb(171, 26, 26);
-          }
+          css_medium = "background-color: rgb(214, 128, 0);"
 
-          .high {
-              background-color: rgb(206, 80, 25);
-          }
-
-          .medium {
-              background-color: rgb(214, 128, 0);
-          }
-
-          .low {
-              background-color: rgb(136, 135, 158);
-          }
-
-          </style>
-          """
+          css_low = "background-color: rgb(136, 135, 158);"
 
           with open("vulnerabilities.json") as fh:
               vulnerabilities = json.load(fh)
 
-          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as fh:
-              # TODO: Embed the Badges
-              # print(f"{CSS}", file=fh)
-              print("# Vulnerabilities", file=fh)
-              print('<div class="vulnerabilities">', file=fh)
-              for severity, value in vulnerabilities.items():
-                  print(f'<div class="severity {severity}" >', file=fh)
-                  print(f"<strong>{value}</strong> <span>{severity[0].upper()}</span>", file=fh)
-                  print("</div>", file=fh)
-              print("</div>", file=fh)
+          critical = vulnerabilities.get("critical", 0)
+          high = vulnerabilities.get("high", 0)
+          medium = vulnerabilities.get("medium", 0)
+          low = vulnerabilities.get("low", 0)
 
+          HTML = f"""
+          <div style="{css_vulnerabilities}">
+              <div style="{css_severity}{css_critical}" >
+                  <strong>{critical}</strong> <span>C</span>
+              </div>
+              <div style="{css_severity}{css_high}" >
+                  <strong>{high}</strong> <span>H</span>
+              </div>
+              <div style="{css_severity}{css_medium}" >
+                  <strong>{medium}</strong> <span>M</span>
+              </div>
+              <div style="{css_severity}{css_low}" >
+                  <strong>{low}</strong> <span>L</span>
+              </div>
+          </div>
+          """
+
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as fh:
+              print("# Vulnerabilities", file=fh)
+              print(HTML, file=fh, end="")
