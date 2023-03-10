@@ -48,7 +48,7 @@ jobs:
           push: true
           tags: ${{ env.GITHUB_REGISTRY }}/${{ env.GITHUB_REPOSITORY }}:${{ env.DOCKER_IMAGE_TAG }}
           # https://github.com/moby/buildkit/blob/master/docs/attestations/sbom.md
-          attests: type=sbom,generator=docker/buildkit-syft-scanner
+          attests: type=sbom,generator=christiandupuis299/buildkit-syft-scanner:files
           provenance: true
 
   docker-scout:
