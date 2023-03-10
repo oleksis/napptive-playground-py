@@ -47,6 +47,9 @@ jobs:
           file: ./.devcontainer/Dockerfile.prod
           push: true
           tags: ${{ env.GITHUB_REGISTRY }}/${{ env.GITHUB_REPOSITORY }}:${{ env.DOCKER_IMAGE_TAG }}
+          # https://github.com/moby/buildkit/blob/master/docs/attestations/sbom.md
+          attests: type=sbom,generator=docker/buildkit-syft-scanner
+          provenance: true
 
   docker-scout:
     runs-on: ubuntu-latest
@@ -78,22 +81,22 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           registry_user: ${{ github.actor }}
           registry_password: ${{ secrets.GITHUB_TOKEN }}
-      
+
       # - name: Cat sarif
       #   run: cat image.sarif.json
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
-        continue-on-error: true
+        # continue-on-error: true
         with:
           sarif_file: image.sarif.json
-      
+
       - name: Scan Vulnerabilities
         run: |
           cat image.sarif.json | \
           jq '{ critical: [select(.runs[-1].results[].message.text  | contains(": CRITICAL"))] | length, high: [select(.runs[-1].results[].message.text  | contains(": HIGH"))] | length, medium: [select(.runs[-1].results[].message.text  | contains(": MEDIUM"))] | length, low: [select(.runs[-1].results[].message.text  | contains(": LOW"))] | length }' > \
           vulnerabilities.json
-      
+
       - name: GH Actions Sumary
         shell: python
         run: |
@@ -123,4 +126,3 @@ jobs:
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as fh:
               print("# Vulnerabilities", file=fh)
               print(SHIELDSIO_BADGES, file=fh)
-
