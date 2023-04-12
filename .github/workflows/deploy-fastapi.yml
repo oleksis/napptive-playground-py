@@ -135,8 +135,8 @@ jobs:
   deploy-app:
     name: Deploy application from catalog
     needs:
-      - check-app
       - push-to-catalog
+      - check-app
     runs-on: ubuntu-latest
     if: ${{ needs.check-app.outputs.not-found == 'false' }}
     steps: 
@@ -149,7 +149,7 @@ jobs:
         VERSION: ${{ needs.check-app.outputs.version }}
         PLAYGROUND_APP_NAME: ${{ env.PLAYGROUND_APP_NAME }}
     - name: Deploy the app from the catalog
-      uses: napptive-actions/catalog-deploy-action@v4.3.0
+      uses: napptive-actions/catalog-deploy-action@v5.0.0
       env:
           PLAYGROUND_PAT: ${{ secrets.PLAYGROUND_PAT }}
       with:        
