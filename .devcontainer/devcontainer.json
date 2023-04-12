@@ -17,7 +17,8 @@
 	"features": {
 		"ghcr.io/oleksis/devcontainer-features/playground-cli:5.0.2": {
 			"version": "latest"
-		}
+		},
+		"ghcr.io/devcontainers-contrib/features/kubectl-asdf:2.0.10": {}
 	},
 
 	// Configure tool-specific properties.
@@ -53,7 +54,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 install --disable-pip-version-check --no-cache-dir --upgrade -r requirements.txt && uvicorn webapp.main:app --host 0.0.0.0 --reload",
+	"postCreateCommand": "pip3 install --disable-pip-version-check --no-cache-dir --upgrade -r requirements.txt && mkdir -p ~/.napptive && uvicorn webapp.main:app --host 0.0.0.0 --reload",
 
 	// "features": {
 	// 	"azure-cli": "latest"
