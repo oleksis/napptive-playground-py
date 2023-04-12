@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/main/containers/python-3
 {
 	"name": "Python 3",
-	"forwardPorts": [8000],
+	// "forwardPorts": [8000],
 	"build": {
 		"dockerfile": "Dockerfile",
 		"context": "..",
@@ -43,7 +43,8 @@
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"ms-python.python",
-				"ms-python.vscode-pylance"
+				"ms-python.vscode-pylance",
+				"ms-python.black-formatter"
 			]
 		}
 	},

@@ -137,3 +137,6 @@ dmypy.json
 
 # Napptive Playground CLI Personal Access Token
 ci_pat.dat
+
+# Napptive KubeConfig
+napptive-kubeconfig
