@@ -59,7 +59,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
       - name: Check if the app exists        
-        uses: napptive-actions/playground-github-action@v4.3.0
+        uses: napptive-actions/playground-github-action@v5.0.0
         continue-on-error: true
         id: check
         with:
@@ -83,7 +83,7 @@ jobs:
     - name: Render version Kubernetes OAM files
       run: python ./scripts/update_version.py
     - name: Push the application on the catalog
-      uses: napptive-actions/catalog-push-action@v2.2.4
+      uses: napptive-actions/catalog-push-action@v5.0.0
       with:
         applicationPath: ./deployments/
         namespace: ${{ env.PLAYGROUND_ACCOUNT_NAME }}
@@ -100,7 +100,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
     - name: Get Kubeconfig      
-      uses: napptive-actions/playground-github-action@v4.3.0
+      uses: napptive-actions/playground-github-action@v5.0.0
       with:
         cmd: "get-kubeconfig" 
     - name: Deploy new version of the application

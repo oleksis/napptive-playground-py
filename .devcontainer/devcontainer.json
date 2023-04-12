@@ -15,7 +15,7 @@
 	},
 
 	"features": {
-		"ghcr.io/oleksis/playground-cli/playground-cli:5": {
+		"ghcr.io/oleksis/devcontainer-features/playground-cli:5.0.2": {
 			"version": "latest"
 		}
 	},
