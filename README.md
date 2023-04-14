@@ -1,4 +1,5 @@
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=526682400)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=574154617)
+[![Publish docker image, push into the catalog and update the deployed application](https://github.com/oleksis/napptive-playground-py/actions/workflows/deploy-fastapi.yml/badge.svg)](https://github.com/oleksis/napptive-playground-py/actions/workflows/deploy-fastapi.yml)
 
 # Python HTTP API for use with GitHub Codespaces
 
