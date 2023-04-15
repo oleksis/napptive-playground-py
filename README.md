@@ -1,6 +1,6 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=526682400)
 
-# Python HTTP API for use with GitHub Codespaces
+# Python HTTP API to be used with GitHub Codespaces
 
 _Run a Python API in this ready-to-use-repository in minutes_
 
@@ -9,7 +9,6 @@ By opening this template respository in Codespaces, you can quickly get hands-on
 🤔 Curious? Watch the following video where we explain all the details:
 
 [![Python development environment with Codespaces](https://img.youtube.com/vi/_i9Pywj3rSg/0.jpg)](https://youtu.be/_i9Pywj3rSg "Python Development environment with Codespaces")
-
 
 <details>
    <summary><strong>Learn more about APIs</strong></summary>
@@ -50,7 +49,9 @@ Try out this template repository using Codespaces following these steps:
 1. Create a repository from this template. Use this [create repo link](https://github.com/microsoft/codespaces-project-template-py/generate). You can make the repository private or public, up to you.
 1. Navigate to the main page of the newly created repository.
 1. Under the repository name, use the Code drop-down menu, and in the Codespaces tab, select "Create Codespace on main".
-   ![Create Codespace](https://docs.github.com/assets/cb-138303/images/help/codespaces/new-codespace-button.png)
+
+   ![2023-04-16](https://user-images.githubusercontent.com/113296626/232247622-58c800d4-7e81-40de-983a-7fac270c49b5.png)
+
 1. Wait as Github initializes the codespace:
    ![Creating Codespace](https://github.com/microsoft/codespaces-teaching-template-py/raw/main/images/Codespace_build.png)
 
@@ -63,7 +64,7 @@ What you have at this point is a pre-configured environment where all the runtim
 This Python application is using FastAPI, a powerful web framework that self-documents its API endpoints. The API has only one endpoint that generates a unique pseudo-random string that can be used as a token.
 
 
-![Running FastAPI](./images/api-running.png)
+![2023-04-16 (1)](https://user-images.githubusercontent.com/113296626/232247759-943b7220-1835-4e1b-9618-65f3c27c36e2.png)
 
 
 <details>
