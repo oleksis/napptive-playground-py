@@ -1,0 +1,31 @@
+html, body, .container {
+    height: 100%;
+}
+.container {
+    display: table;
+    vertical-align: middle;
+}
+.vertical-center-row {
+    display: table-cell;
+    vertical-align: middle;
+}
+img{
+        cursor: pointer;
+}
+p{
+    text-align: center;
+}
+
+#main{
+    border: none;
+    background: radial-gradient(circle at 10% 20%, rgb(111, 111, 219) 0%, rgb(182, 109, 246) 72.4%);
+    margin-left: 1.25rem;
+    margin-bottom: 6rem;
+    margin-top: 1.025rem;
+    transform: scale(1.5);
+    margin-left: 45%;
+}
+#link{
+    margin-left: 43%;
+
+}
