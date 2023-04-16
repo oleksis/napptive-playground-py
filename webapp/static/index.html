@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,23 +5,9 @@
     <title>NAPPTIVE Playground & FastAPI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="https://playground.napptive.dev/favicon.ico">
-    <link rel="stylesheet" href="/ui/bootstrap.min.css">
-    <style>
-  html, body, .container {
-    height: 100%;
-}
-.container {
-    display: table;
-    vertical-align: middle;
-}
-.vertical-center-row {
-    display: table-cell;
-    vertical-align: middle;
-}
-img{
-        cursor: pointer;
-}
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <div class="container">
@@ -33,14 +18,14 @@ img{
               <a style="text-decoration: none" href="https://playground.napptive.dev/">🚀</a>
               </p>
             <div class="bs-component">
-              <h2>Containerized Python API
+              <h2 style="text-align: center;">Containerized Python API
               </h2>
               <p>This is a containerized application that exposes a JSON API using <a href="https://fastapi.tiangolo.com/">FastAPI</a> with <a href="https://playground.napptive.dev/">NAPPTIVE Playground!</a></p>
               <p>Use the buttons below to make use of the interactive (OpenAPI) documentation for trying out the API dynamically.
                 or browse the project source.
               </p>
-              <button onclick="window.location.href='/docs'" type="button" class="btn btn-info">Try it out</button>
-              <button onclick="window.location.href='https://github.com/oleksis/napptive-playground-py'" type="button" class="btn btn-info">Project source</button>
+              <button onclick="window.open(href='/docs', '_blank')" type="button" class="btn btn-info" id="main">Try it out</button> <br>
+              <button onclick="window.open(href='https://github.com/oleksis/napptive-playground-py', '_blank')" type="button" class="btn btn-info" id="link">Project source <i class="fa fa-github"></i></button>
             </div>
           </div>
         </div>
